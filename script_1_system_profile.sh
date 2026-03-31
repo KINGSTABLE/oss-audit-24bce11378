@@ -1,15 +1,21 @@
 #!/bin/bash
-# Linux System Profile Script
-# Author: VRAJ J. PATEL
-# Registration Number: 24BCE11378
-# Course: Open Source Software
+# ============================================================
+# Script 1 : Linux System Profile
+# Author   : VRAJ J. PATEL
+# Reg. No. : 24BCE11378
+# Slot     : D11
+# Submitted: 31/03/2026
+# Course   : Open Source Software
+# ============================================================
 
 # -------------------------------
 # LINUX SYSTEM PROFILE
 # -------------------------------
 
 echo "=========================================="
-echo "            LINUX SYSTEM PROFILE"
+echo "         LINUX SYSTEM PROFILE"
+echo "        Submitted by: VRAJ J. PATEL"
+echo "        Reg No      : 24BCE11378"
 echo "=========================================="
 
 # Current date and time
@@ -40,8 +46,9 @@ CPU_INFO=$(lscpu | grep "Model name" | cut -d ':' -f2)
 # RAM Information
 TOTAL_RAM=$(free -h | grep Mem | awk '{print $2}')
 
-# Display Information
-
+echo "------------------------------------------"
+echo "         SYSTEM DETAILS SUMMARY"
+echo "------------------------------------------"
 echo "Date & Time       : $CURRENT_DATE"
 echo "Operating System  : $OS_NAME"
 echo "Kernel Version    : $KERNEL_VERSION"
