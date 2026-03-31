@@ -1,28 +1,34 @@
 #!/bin/bash
-# Linux System Profile Script
-# Author: VRAJ J. PATEL
-# Registration Number: 24BCE11378
-# Course: Open Source Software
+# ============================================================
+# Script 1: Linux System Profile
+# ------------------------------------------------------------
+# Author              : VRAJ J. PATEL
+# Registration Number : 24BCE11378
+# Slot                : D11
+# Date of Submission  : 31/03/2026
+# Course              : Open Source Software
+# ============================================================
 
-# -------------------------------
+# -------------------------------------------------------
 # LINUX SYSTEM PROFILE
-# -------------------------------
+# -------------------------------------------------------
 
 echo "=========================================="
-echo "            LINUX SYSTEM PROFILE"
+echo "         LINUX SYSTEM PROFILE"
+echo "    Submitted by: VRAJ J. PATEL (24BCE11378)"
 echo "=========================================="
 
 # Current date and time
-CURRENT_DATE=$(date "+%Y-%m-%d %H:%M:%S")
+CURRENT_DATE=$(date "+%d-%m-%Y  %H:%M:%S")
 
 # Kernel version
 KERNEL_VERSION=$(uname -r)
 
-# Logged in user
+# Logged-in user
 CURRENT_USER=$(whoami)
 
-# System uptime
-SYSTEM_UPTIME=$(uptime -p)
+# System uptime (with fallback for older systems)
+SYSTEM_UPTIME=$(uptime -p 2>/dev/null || uptime)
 
 # Hostname
 HOST_NAME=$(hostname)
@@ -34,33 +40,40 @@ else
     OS_NAME=$(uname -s)
 fi
 
-# CPU Information
-CPU_INFO=$(lscpu | grep "Model name" | cut -d ':' -f2)
+# CPU Information – strip leading whitespace for clean output
+CPU_INFO=$(lscpu | grep "Model name" | cut -d ':' -f2 | sed 's/^[[:space:]]*//')
 
 # RAM Information
 TOTAL_RAM=$(free -h | grep Mem | awk '{print $2}')
 
-# Display Information
+# Architecture
+ARCH=$(uname -m)
 
+# Display Information
 echo "Date & Time       : $CURRENT_DATE"
 echo "Operating System  : $OS_NAME"
 echo "Kernel Version    : $KERNEL_VERSION"
+echo "Architecture      : $ARCH"
 echo "Hostname          : $HOST_NAME"
 echo "Logged In User    : $CURRENT_USER"
 echo "System Uptime     : $SYSTEM_UPTIME"
-echo "CPU Information   : $CPU_INFO"
+echo "CPU               : $CPU_INFO"
 echo "Total RAM         : $TOTAL_RAM"
 
 echo "------------------------------------------"
-echo "This Linux system is based on open-source"
-echo "software and is licensed under the GPL."
+echo "This Linux system is built on open-source"
+echo "software and is distributed under the GPL."
 echo "------------------------------------------"
 
 echo "=========================================="
 
-# Concepts Used:
-# - Variables
-# - Command substitution $( )
-# - if condition
-# - echo formatting
-# - Basic Linux commands (uname, uptime, whoami, free, lscpu)
+# -------------------------------------------------------
+# Concepts Demonstrated:
+#   - Shell variables and command substitution $( )
+#   - Conditional (if / else) with file existence check
+#   - sed for string trimming
+#   - Graceful fallback with || operator
+#   - Formatted output using echo
+#   - Linux commands: uname, uptime, whoami, free, lscpu,
+#     hostname, grep, awk, sed
+# -------------------------------------------------------
