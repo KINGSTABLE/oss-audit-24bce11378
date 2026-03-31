@@ -20,7 +20,7 @@ read -p "What would you build and share with the world? " BUILD
 read -p "Which open-source license would you choose? " LICENSE
 
 DATE=$(date "+%d/%m/%Y %H:%M:%S")
-AUTHOR_USER=$(whoami)
+AUTHOR_USER=$(whoami | tr '\\' '_')
 FILE="oss_manifesto_${AUTHOR_USER}.txt"
 
 {
