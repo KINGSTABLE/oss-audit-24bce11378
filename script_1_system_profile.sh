@@ -1,8 +1,12 @@
 #!/bin/bash
-# Linux System Profile Script
-# Author: VRAJ J. PATEL
-# Registration Number: 24BCE11378
-# Course: Open Source Software
+# ============================================================
+# Script 1 : Linux System Profile
+# Author   : VRAJ J. PATEL
+# Reg. No. : 24BCE11378
+# Slot     : D11
+# Submitted: 31/03/2026
+# Course   : Open Source Software
+# ============================================================
 
 # -------------------------------
 # LINUX SYSTEM PROFILE
@@ -17,6 +21,9 @@ CURRENT_DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
 # Kernel version
 KERNEL_VERSION=$(uname -r)
+
+# Kernel architecture
+ARCH=$(uname -m)
 
 # Logged in user
 CURRENT_USER=$(whoami)
@@ -35,27 +42,31 @@ else
 fi
 
 # CPU Information
-CPU_INFO=$(lscpu | grep "Model name" | cut -d ':' -f2)
+CPU_INFO=$(lscpu | grep "Model name" | cut -d ':' -f2 | sed 's/^[[:space:]]*//')
+
+# Number of CPU cores
+CPU_CORES=$(nproc)
 
 # RAM Information
 TOTAL_RAM=$(free -h | grep Mem | awk '{print $2}')
+USED_RAM=$(free -h | grep Mem | awk '{print $3}')
 
 # Display Information
-
 echo "Date & Time       : $CURRENT_DATE"
 echo "Operating System  : $OS_NAME"
-echo "Kernel Version    : $KERNEL_VERSION"
+echo "Kernel Version    : $KERNEL_VERSION ($ARCH)"
 echo "Hostname          : $HOST_NAME"
 echo "Logged In User    : $CURRENT_USER"
 echo "System Uptime     : $SYSTEM_UPTIME"
 echo "CPU Information   : $CPU_INFO"
-echo "Total RAM         : $TOTAL_RAM"
+echo "CPU Cores         : $CPU_CORES"
+echo "Total RAM         : $TOTAL_RAM  (Used: $USED_RAM)"
 
 echo "------------------------------------------"
 echo "This Linux system is based on open-source"
 echo "software and is licensed under the GPL."
 echo "------------------------------------------"
-
+echo "Student : VRAJ J. PATEL  |  Reg: 24BCE11378  |  Slot: D11"
 echo "=========================================="
 
 # Concepts Used:
@@ -63,4 +74,4 @@ echo "=========================================="
 # - Command substitution $( )
 # - if condition
 # - echo formatting
-# - Basic Linux commands (uname, uptime, whoami, free, lscpu)
+# - Basic Linux commands (uname, uptime, whoami, free, lscpu, nproc)
